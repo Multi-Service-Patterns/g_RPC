@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package music;
+
+option go_package = "go_client/music_service";
+
+service MusicService {
+  rpc GetUser(GetUserRequest) returns (User) {}
+  rpc CreateUser(CreateUserRequest) returns (User) {}
+  rpc UpdateUser(UpdateUserRequest) returns (User) {}
+  rpc DeleteUser(DeleteUserRequest) returns (Empty) {}
+
+  rpc GetPlaylist(GetPlaylistRequest) returns (Playlist) {}
+  rpc CreatePlaylist(CreatePlaylistRequest) returns (Playlist) {}
+  rpc UpdatePlaylist(UpdatePlaylistRequest) returns (Playlist) {}
+  rpc DeletePlaylist(DeletePlaylistRequest) returns (Empty) {}
+
+  rpc GetSong(GetSongRequest) returns (Song) {}
+  rpc CreateSong(CreateSongRequest) returns (Song) {}
+  rpc UpdateSong(UpdateSongRequest) returns (Song) {}
+  rpc DeleteSong(DeleteSongRequest) returns (Empty) {}
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+  map<string, bool> playlists = 4;
+}
+
+message Playlist {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  map<string, bool> songs = 4;
+}
+
+message Song {
+  string id = 1;
+  string artist = 2;
+  string name = 3;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message CreateUserRequest {
+  User user = 1;
+}
+
+message UpdateUserRequest {
+  User user = 1;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message GetPlaylistRequest {
+  string id = 1;
+}
+
+message CreatePlaylistRequest {
+  Playlist playlist = 1;
+}
+
+message UpdatePlaylistRequest {
+  Playlist playlist = 1;
+}
+
+message DeletePlaylistRequest {
+  string id = 1;
+}
+
+message GetSongRequest {
+  string id = 1;
+}
+
+message CreateSongRequest {
+  Song song = 1;
+}
+
+message UpdateSongRequest {
+  Song song = 1;
+}
+
+message DeleteSongRequest {
+  string id = 1;
+}
+
+message Empty {}
